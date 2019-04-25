@@ -22,11 +22,13 @@ FROM balenalib/rpi:buster
 RUN [ "cross-build-start" ]
 
 COPY --from=builder /extract /prometheus
+RUN chown -R nobody:nogroup /prometheus
 
 RUN [ "cross-build-end" ]
 
 VOLUME /prometheus/data
 EXPOSE 9090
+USER nobody
 
 #ENTRYPOINT ["entrypoint.sh"]
 CMD ["/prometheus/prometheus", "--config.file=/prometheus/prometheus.yml", "--storage.tsdb.path=/prometheus/data"]
