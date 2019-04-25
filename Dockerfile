@@ -4,6 +4,7 @@ RUN [ "cross-build-start" ]
 
 ARG OS=linux
 ARG ARCH=armv6
+ARG PRODUCT=prometheus
 ARG RELEASE=2.9.1
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -11,9 +12,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	tar \
 && rm -rf /var/lib/apt/lists/*
 
-RUN curl -LJ https://github.com/prometheus/prometheus/releases/download/v$RELEASE/prometheus-$RELEASE.$OS-$ARCH.tar.gz -o prometheus.tar.gz && \
+RUN curl -LJ https://github.com/prometheus/$PRODUCT/releases/download/v$RELEASE/$PRODUCT-$RELEASE.$OS-$ARCH.tar.gz -o $PRODUCT.tar.gz && \
 	mkdir /extract && \
-	tar -xzf prometheus.tar.gz -C /extract --strip-components=1
+	tar -xzf $PRODUCT.tar.gz -C /extract --strip-components=1
 
 RUN [ "cross-build-end" ]
 
