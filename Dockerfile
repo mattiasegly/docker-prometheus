@@ -30,5 +30,5 @@ VOLUME /prometheus/data
 EXPOSE 9090
 USER nobody
 
-#ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
 CMD ["/prometheus/prometheus", "--config.file=/prometheus/prometheus.yml", "--storage.tsdb.path=/prometheus/data"]
