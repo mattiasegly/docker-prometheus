@@ -23,8 +23,7 @@ RUN [ "cross-build-start" ]
 
 COPY --from=builder /extract /prometheus
 COPY entrypoint.sh /usr/local/bin
-RUN chown -R nobody:nogroup /prometheus && \
-	chmod +x /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 RUN [ "cross-build-end" ]
 
