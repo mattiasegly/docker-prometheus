@@ -1,4 +1,3 @@
-    
 #!/bin/bash
 
 echo "Create Prometheus data folder if it doesn't exist..."
