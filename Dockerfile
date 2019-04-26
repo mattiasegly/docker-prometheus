@@ -22,7 +22,9 @@ FROM balenalib/rpi:buster
 RUN [ "cross-build-start" ]
 
 COPY --from=builder /extract /prometheus
-RUN chown -R nobody:nogroup /prometheus
+COPY entrypoint.sh /usr/local/bin
+RUN chown -R nobody:nogroup /prometheus && \
+	chmod +x /usr/local/bin/entrypoint.sh
 
 RUN [ "cross-build-end" ]
 
