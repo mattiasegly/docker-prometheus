@@ -5,7 +5,7 @@ RUN [ "cross-build-start" ]
 ARG OS=linux
 ARG ARCH=armv6
 ARG PRODUCT=prometheus
-ARG RELEASE=2.10.0
+ARG RELEASE=2.11.0
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 	curl \
