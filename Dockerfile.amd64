@@ -1,4 +1,5 @@
-FROM debian:buster AS builder
+#Using stretch because of curl SSL error on buster
+FROM debian:stretch AS builder
 
 ARG OS=linux
 ARG ARCH=amd64
