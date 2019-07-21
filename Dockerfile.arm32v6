@@ -1,4 +1,5 @@
-FROM balenalib/rpi:buster AS builder
+#Using stretch because of curl SSL error on buster
+FROM balenalib/rpi:stretch AS builder
 RUN [ "cross-build-start" ]
 
 ARG OS=linux
