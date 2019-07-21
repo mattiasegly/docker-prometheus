@@ -1,0 +1,27 @@
+FROM debian:buster AS builder
+
+ARG OS=linux
+ARG ARCH=amd64
+ARG PRODUCT=prometheus
+ARG RELEASE=2.11.1
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+	curl \
+	tar \
+&& rm -rf /var/lib/apt/lists/*
+
+RUN curl -LJ https://github.com/prometheus/$PRODUCT/releases/download/v$RELEASE/$PRODUCT-$RELEASE.$OS-$ARCH.tar.gz -o $PRODUCT.tar.gz && \
+	mkdir /extract && \
+	tar -xzf $PRODUCT.tar.gz -C /extract --strip-components=1
+
+FROM debian:buster
+
+COPY --from=builder /extract /prometheus
+RUN mkdir /prometheus-data && \
+	chown -R nobody:nogroup /prometheus*
+
+VOLUME /prometheus-data
+EXPOSE 9090
+USER nobody
+
+CMD ["/prometheus/prometheus", "--config.file=/prometheus/prometheus.yml", "--storage.tsdb.path=/prometheus-data"]
