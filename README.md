@@ -1,4 +1,4 @@
-# docker-rpi-prometheus
+# docker-prometheus
 Raspberry Pi Docker Container for Prometheus<BR>
 Work in progress, trying to create simple Prometheus container.
 
