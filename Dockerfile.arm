@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	ca-certificates \
 && rm -rf /var/lib/apt/lists/*
 
+ENV CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 RUN curl -L https://github.com/prometheus/$PRODUCT/releases/download/v$RELEASE/$PRODUCT-$RELEASE.$OS-$ARCH.tar.gz -o $PRODUCT.tar.gz && \
 	mkdir /extract && \
 	tar -xzf $PRODUCT.tar.gz -C /extract --strip-components=1
