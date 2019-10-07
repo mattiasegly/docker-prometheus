@@ -23,7 +23,7 @@ FROM balenalib/rpi-raspbian:buster
 RUN [ "cross-build-start" ]
 
 COPY --from=builder /extract /prometheus
-RUN mkdir /prometheus-data && \
+RUN mkdir /prometheus-data /prometheus-conf && \
 	chown -R nobody:nogroup /prometheus*
 
 RUN [ "cross-build-end" ]
@@ -32,4 +32,4 @@ VOLUME /prometheus-data
 EXPOSE 9090
 USER nobody
 
-CMD ["/prometheus/prometheus", "--config.file=/prometheus/prometheus.yml", "--storage.tsdb.path=/prometheus-data"]
+CMD ["/prometheus/prometheus", "--config.file=/prometheus-conf/prometheus.yml", "--storage.tsdb.path=/prometheus-data"]
