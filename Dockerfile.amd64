@@ -18,11 +18,11 @@ RUN curl -L https://github.com/prometheus/$PRODUCT/releases/download/v$RELEASE/$
 FROM debian:buster
 
 COPY --from=builder /extract /prometheus
-RUN mkdir /prometheus-data && \
+RUN mkdir /prometheus-data /prometheus-conf && \
 	chown -R nobody:nogroup /prometheus*
 
 VOLUME /prometheus-data
 EXPOSE 9090
 USER nobody
 
-CMD ["/prometheus/prometheus", "--config.file=/prometheus/prometheus.yml", "--storage.tsdb.path=/prometheus-data"]
+CMD ["/prometheus/prometheus", "--config.file=/prometheus-conf/prometheus.yml", "--storage.tsdb.path=/prometheus-data"]
