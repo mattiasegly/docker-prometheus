@@ -7,7 +7,7 @@ Running with tag :latest should work on all Raspberry Pi models and standard 64-
 Run with:<BR>
 docker run -d \\\
 -p 9090:9090 \\\
---mount type=bind,src=/some/conf.yml,dst=/prometheus/prometheus.yml \\\
+--mount type=bind,src=/some/conf.yml,dst=/prometheus-conf/prometheus.yml \\\
 --mount type=bind,src=/some/path,dst=/prometheus-data \\\
 mattiasegly/rpi-prometheus:latest
 
