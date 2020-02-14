@@ -3,7 +3,7 @@ FROM debian:buster AS builder
 ARG OS=linux
 ARG ARCH=amd64
 ARG PRODUCT=prometheus
-ARG RELEASE=2.15.2
+ARG RELEASE=2.16.0
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 	curl \
