@@ -1,4 +1,4 @@
-FROM debian:buster AS builder
+FROM mattiasegly/base-image:amd64 AS builder
 
 ARG OS=linux
 ARG ARCH=amd64
@@ -15,7 +15,7 @@ RUN curl -L https://github.com/prometheus/$PRODUCT/releases/download/v$RELEASE/$
 	mkdir /extract && \
 	tar -xzf $PRODUCT.tar.gz -C /extract --strip-components=1
 
-FROM debian:buster
+FROM mattiasegly/base-image:amd64
 
 COPY --from=builder /extract /prometheus
 RUN mkdir /prometheus-data /prometheus-conf && \
